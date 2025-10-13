@@ -45,7 +45,7 @@ const TableRow = ({coin , setChart,}) => {
         const res = await fetch(marketChart(coin.id))
         const json = await res.json()
         console.log(json)
-        setChart(json)
+        setChart({...json, coin})
       } catch (error) {
         setChart(null)
       }
@@ -61,7 +61,7 @@ const TableRow = ({coin , setChart,}) => {
             </td>
             <td>{coin.name}</td>
             <td>${coin.current_price.toLocaleString()}</td>
-            <td className={coin.price_change_percentage_24h > 0 ? styles.success : styles.error}>{coin.price_change_percentage_24h.toFixed(2)}%</td>
+            <td className={coin.price_change_percentage_24h > 0 ? styles.success : styles.error}>{coin.price_change_percentage_24h}%</td>
             <td>{coin.total_volume.toLocaleString()}</td>
             <td><img src={coin.price_change_percentage_24h > 0 ? chartUp : chartDown } alt="" /></td>
     </tr>
